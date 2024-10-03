@@ -25,14 +25,22 @@
         <div id="registerSuccess" class="success" style="display:none;">Successfully registered</div>
     </div>
     <div id="chat" class="container" style="display:none;">
-        <div id="profile">
-            <span id="welcomeMessage"></span>
-            <button onclick="logout()">Logout</button>
-        </div>
-        <div id="chatWindow"></div>
-        <div class="input-container">
-            <input type="text" id="message" placeholder="Type a message">
-            <button onclick="sendMessage()">Send</button>
+        <div id="chatContainer">
+            <div style="flex: 3;">
+                <div id="profile">
+                    <span id="welcomeMessage"></span>
+                    <button onclick="logout()">Logout</button>
+                </div>
+                <div id="chatWindow"></div>
+                <div class="input-container">
+                    <input type="text" id="message" placeholder="Type a message">
+                    <button onclick="sendMessage()">Send</button>
+                </div>
+            </div>
+            <div id="userListContainer">
+                <h3>Benutzerliste (Online)</h3>
+                <div id="userList"></div>
+            </div>
         </div>
     </div>
     <script src="/socket.io/socket.io.js"></script>
