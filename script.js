@@ -32,6 +32,7 @@ function login() {
                 document.getElementById('welcomeMessage').textContent = `Welcome, ${username}`;
                 socket.auth = { token: data.token };
                 socket.connect();
+                socket.emit('join', username);
             } else {
                 document.getElementById('loginError').style.display = 'block';
             }
@@ -76,12 +77,44 @@ function logout() {
     socket.disconnect();
 }
 
+function updateUserList() {
+    fetch('/users')
+        .then(response => response.json())
+        .then(users => {
+            const userList = document.getElementById('userList');
+            userList.innerHTML = ''; // Clear existing list
+            users.forEach(user => {
+                const userElement = document.createElement('div');
+                userElement.textContent = user;
+                userList.appendChild(userElement);
+            });
+        });
+}
+
+// Call updateUserList when the chat is shown
+function showChat() {
+    document.getElementById('login').style.display = 'none';
+    document.getElementById('register').style.display = 'none';
+    document.getElementById('chat').style.display = 'block';
+    updateUserList(); // Update user list
+}
+
 socket.on('message', data => {
     const chatWindow = document.getElementById('chatWindow');
     const messageElement = document.createElement('div');
     messageElement.textContent = `${data.username}: ${data.message}`;
     chatWindow.appendChild(messageElement);
     chatWindow.scrollTop = chatWindow.scrollHeight;
+});
+
+socket.on('userList', users => {
+    const userList = document.getElementById('userList');
+    userList.innerHTML = ''; // Clear existing list
+    users.forEach(user => {
+        const userElement = document.createElement('div');
+        userElement.textContent = user;
+        userList.appendChild(userElement);
+    });
 });
 
 // Connect socket with token
