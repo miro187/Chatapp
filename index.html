@@ -8,14 +8,16 @@
 </head>
 <body>
     <div id="login" class="container">
+        <h1>ChatForChatters</h1>
         <h2>Login</h2>
         <input type="text" id="username" placeholder="Username">
         <input type="password" id="password" placeholder="Password">
-        <button onclick="login()">Login</button>
+        <button onclick="login()" id="loginButton">Login</button>
         <button onclick="showRegister()">Register</button>
         <div id="loginError" class="error" style="display:none;">Invalid username or password</div>
     </div>
     <div id="register" class="container" style="display:none;">
+        <h1>ChatForChatters</h1>
         <h2>Register</h2>
         <input type="text" id="regUsername" placeholder="Username">
         <input type="password" id="regPassword" placeholder="Password">
