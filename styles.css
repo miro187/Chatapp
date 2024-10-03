@@ -1,6 +1,6 @@
 body {
-    font-family: 'Arial', sans-serif;
-    background-color: #f0f0f0;
+    font-family: 'Roboto', sans-serif; /* Modernere Schriftart */
+    background-color: #e9ecef; /* Leichterer Hintergrund */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -9,11 +9,14 @@ body {
 }
 
 .container {
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    width: 300px;
+    width: 600px; /* Breitere Container */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #ffffff;
+    padding: 30px; /* Mehr Padding für mehr Raum */
+    border-radius: 10px; /* Leicht abgerundete Ecken */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Weicherer Schatten */
     text-align: center;
 }
 
@@ -23,37 +26,39 @@ h2 {
 }
 
 input[type="text"], input[type="password"] {
-    width: calc(100% - 22px);
-    padding: 10px;
-    margin-bottom: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
+    width: calc(100% - 24px);
+    padding: 12px; /* Größere Eingabefelder */
+    margin-bottom: 15px; /* Mehr Abstand zwischen Eingabefeldern */
+    border: 1px solid #ced4da;
+    border-radius: 5px;
+    transition: border-color 0.3s; /* Sanfter Übergang */
 }
 
 button {
-    width: 100%;
-    padding: 10px;
-    background-color: #007BFF;
+    padding: 12px; /* Größere Schaltflächen */
+    background-color: #007bff;
     color: #fff;
     border: none;
-    border-radius: 4px;
+    border-radius: 5px;
     cursor: pointer;
     font-size: 16px;
+    transition: background-color 0.3s; /* Sanfter Übergang */
     margin-bottom: 10px; /* Add margin-bottom to create space between buttons */
 }
 
 button:hover {
-    background-color: #0056b3;
+    background-color: #0056b3; /* Dunklerer Hover-Effekt */
 }
 
 #chatWindow {
-    height: 300px;
-    overflow-y: scroll;
-    border: 1px solid #ccc;
-    margin-bottom: 10px;
-    padding: 10px;
-    background-color: #f9f9f9;
-    border-radius: 4px;
+    flex: 3;
+    margin-right: 20px;
+    height: 350px; /* Größeres Chatfenster */
+    overflow-y: auto; /* Automatisches Scrollen */
+    border: 1px solid #ced4da;
+    padding: 15px; /* Mehr Padding */
+    background-color: #f8f9fa; /* Leichterer Hintergrund */
+    border-radius: 5px;
     text-align: left;
 }
 
@@ -61,6 +66,7 @@ button:hover {
     display: flex;
     flex-direction: column;
     gap: 10px;
+    margin-top: 10px;
 }
 
 #profile {
@@ -79,3 +85,41 @@ button:hover {
     color: green;
     margin-top: 10px;
 }
+
+#userListContainer {
+    position: fixed; /* Fix the position */
+    right: 0; /* Align to the right */
+    top: 0; /* Align to the top */
+    width: 220px; /* Set a fixed width */
+    height: 100%; /* Full height */
+    background-color: #f8f9fa;
+    box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1); /* Add shadow for modern look */
+    padding: 10px;
+    border-radius: 5px;
+    overflow-y: auto;
+}
+
+#userListContainer h3 {
+    margin: 0 0 10px 0; /* Add margin below the heading */
+    text-align: center; /* Center the heading text */
+    color: #333; /* Heading color */
+}
+
+#userList {
+    border: 1px solid #ced4da;
+    border-radius: 5px;
+    background-color: #ffffff;
+    padding: 10px;
+    height: calc(100% - 40px); /* Adjust height to account for heading */
+    overflow-y: auto;
+    text-align: left; /* Text linksbündig */
+}
+
+#chat {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start; /* Align items at the top */
+}
+
+
