@@ -85,18 +85,22 @@ io.use((socket, next) => {
 
 io.on('connection', socket => {
     socket.on('join', username => {
-        if (users[username]) {
-            socket.username = username;
-            messages.forEach(message => {
-                socket.emit('message', message);
-            });
-        } else {
-            socket.disconnect();
-        }
+        users[username] = socket.id;
+        socket.username = username;
+        io.emit('userList', Object.keys(users)); // Send updated user list
+        messages.forEach(message => {
+            socket.emit('message', message);
+        });
     });
 
     socket.on('leave', () => {
         delete users[socket.username];
+        io.emit('userList', Object.keys(users)); // Update user list
+    });
+
+    socket.on('disconnect', () => {
+        delete users[socket.username];
+        io.emit('userList', Object.keys(users)); // Update user list
     });
 
     socket.on('message', data => {
@@ -104,6 +108,16 @@ io.on('connection', socket => {
         messages.push(message);
         io.emit('message', message);
     });
+});
+
+app.get('/users', async (req, res) => {
+    try {
+        const usersCollection = client.db("chatapp").collection("users");
+        const users = await usersCollection.find({}).toArray();
+        res.json(users.map(user => user.username));
+    } catch (err) {
+        res.status(500).send('Error retrieving users');
+    }
 });
 
 server.listen(3000, () => {
