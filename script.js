@@ -120,3 +120,10 @@ socket.on('userList', users => {
 // Connect socket with token
 socket.auth = { token: localStorage.getItem('token') };
 socket.connect();
+
+document.getElementById('message').addEventListener('keypress', function(event) {
+    if (event.key === 'Enter') {
+        event.preventDefault(); // Verhindert das Standardverhalten des Enter-Tastendrucks
+        sendMessage(); // Ruft die sendMessage-Funktion auf
+    }
+});
